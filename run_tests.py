@@ -252,7 +252,7 @@ def upgrade_tree(basic_tree):
         name, children = elem
         if children is not None:
             return Dir(name, *map(_rec, children))
-        m = re.fullmatch(r'LINK (.*) -> (.*)', name)
+        m = re.fullmatch(r'SYM (.*) -> (.*)', name)
         if m:
             return Symlink(m.group(1), m.group(2))
         return FileOrEmptyDir(name)
