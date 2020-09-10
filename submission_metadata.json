@@ -1,0 +1,51 @@
+{
+  "deliverables": {
+    "project-submission": {
+      "resubmission-detected": false,
+      "slip-days-spent": 1,
+      "base-checks": [
+        {
+          "warnings": [],
+          "name": "InGitRepo"
+        },
+        {
+          "warnings": [],
+          "name": "RunningOnAlamode"
+        },
+        {
+          "warnings": [
+            "You have untracked files:\n\ntest/test.c\n\nThese files will not be included in your submission unless you commit them."
+          ],
+          "name": "UntrackedFiles"
+        },
+        {
+          "warnings": [
+            "You have uncommitted changes:\n\n.gitignore\n\nThese changes to tracked files will not be included in your submission unless\nyou commit them."
+          ],
+          "name": "UncommittedFiles"
+        },
+        {
+          "warnings": [],
+          "name": "CodeCompiles"
+        },
+        {
+          "warnings": [
+            "You have style errors.  Points may be deducted for poor style.\n\nSee the Linux Kernel Style Guide for reference, the required style\nguide for this course:\nhttps://www.kernel.org/doc/html/v5.8/process/coding-style.html\n\nCheckpatch output:\n> ERROR: do not use C99 // comments\n> #1: FILE: tree.c:1:\n> +//Mason Brainard\n> \n> ERROR: do not use C99 // comments\n> #2: FILE: tree.c:2:\n> +//9/9/20\n> \n> ERROR: do not use C99 // comments\n> #3: FILE: tree.c:3:\n> +//section a\n> \n> ERROR: do not use C99 // comments\n> #19: FILE: tree.c:19:\n> +\t\t//how many tabs to add\n> \n> WARNING: braces {} are not necessary for single statement blocks\n> #20: FILE: tree.c:20:\n> +\t\tfor (int i = 0; i < ftwbuf->level - 1; i = i + 1) {\n> +\t\t\tprintf(\"%c\", 9);\n> +\t\t}\n> \n> ERROR: do not use C99 // comments\n> #24: FILE: tree.c:24:\n> +\t\t//what file/directory/sym\n> \n> ERROR: do not use C99 // comments\n> #28: FILE: tree.c:28:\n> +\t\t\t//send to readlink function which will return the path\n> \n> WARNING: please, no spaces at the start of a line\n> #53: FILE: tree.c:53:\n> +    //check if input is a directory$\n> \n> ERROR: do not use C99 // comments\n> #53: FILE: tree.c:53:\n> +    //check if input is a directory\n> \n> WARNING: please, no spaces at the start of a line\n> #54: FILE: tree.c:54:\n> +    if (argc == 2)$\n> \n> ERROR: that open brace { should be on the previous line\n> #54: FILE: tree.c:54:\n> +    if (argc == 2)\n> +    {\n> \n> WARNING: please, no spaces at the start of a line\n> #55: FILE: tree.c:55:\n> +    {$\n> \n> ERROR: code indent should use tabs where possible\n> #56: FILE: tree.c:56:\n> +        DIR *dir;$\n> \n> WARNING: please, no spaces at the start of a line\n> #56: FILE: tree.c:56:\n> +        DIR *dir;$\n> \n> ERROR: code indent should use tabs where possible\n> #57: FILE: tree.c:57:\n> +        if ((dir = opendir(argv[1])) == NULL)$\n> \n> WARNING: Missing a blank line after declarations\n> #57: FILE: tree.c:57:\n> +        DIR *dir;\n> +        if ((dir = opendir(argv[1])) == NULL)\n> \n> WARNING: please, no spaces at the start of a line\n> #57: FILE: tree.c:57:\n> +        if ((dir = opendir(argv[1])) == NULL)$\n> \n> ERROR: that open brace { should be on the previous line\n> #57: FILE: tree.c:57:\n> +        if ((dir = opendir(argv[1])) == NULL)\n> +        {\n> \n> WARNING: suspect code indent for conditional statements (8, 12)\n> #57: FILE: tree.c:57:\n> +        if ((dir = opendir(argv[1])) == NULL)\n> +        {\n> \n> ERROR: do not use assignment in if condition\n> #57: FILE: tree.c:57:\n> +        if ((dir = opendir(argv[1])) == NULL)\n> \n> ERROR: code indent should use tabs where possible\n> #58: FILE: tree.c:58:\n> +        {$\n> \n> WARNING: please, no spaces at the start of a line\n> #58: FILE: tree.c:58:\n> +        {$\n> \n> ERROR: code indent should use tabs where possible\n> #59: FILE: tree.c:59:\n> +            fprintf(stderr, \"Error opening directory: %s are you sure it's a directory?\\n\", argv[1]);$\n> \n> WARNING: please, no spaces at the start of a line\n> #59: FILE: tree.c:59:\n> +            fprintf(stderr, \"Error opening directory: %s are you sure it's a directory?\\n\", argv[1]);$\n> \n> ERROR: code indent should use tabs where possible\n> #60: FILE: tree.c:60:\n> +            exit(1);$\n> \n> WARNING: please, no spaces at the start of a line\n> #60: FILE: tree.c:60:\n> +            exit(1);$\n> \n> ERROR: code indent should use tabs where possible\n> #61: FILE: tree.c:61:\n> +        }$\n> \n> WARNING: please, no spaces at the start of a line\n> #61: FILE: tree.c:61:\n> +        }$\n> \n> ERROR: code indent should use tabs where possible\n> #62: FILE: tree.c:62:\n> +        closedir(dir);$\n> \n> WARNING: please, no spaces at the start of a line\n> #62: FILE: tree.c:62:\n> +        closedir(dir);$\n> \n> WARNING: please, no spaces at the start of a line\n> #63: FILE: tree.c:63:\n> +    }$\n> \n> WARNING: braces {} are not necessary for single statement blocks\n> #69: FILE: tree.c:69:\n> +\tif (nftw((argc < 2) ? \".\" : argv[1], display_info, 20, flags) == -1) {\n> +\t\texit(-1);\n> +\t}\n> \n> total: 17 errors, 15 warnings, 74 lines checked\n> \n> NOTE: Whitespace errors detected.\n>       You may wish to use scripts/cleanpatch or scripts/cleanfile\n> \n> tree.c has style problems, please review.\n> \n> NOTE: Ignored message types: C99_COMMENT_TOLERANCE CONST_STRUCT EMBEDDED_FUNCTION_NAME FILE_PATH_CHANGES SPDX_LICENSE_TAG SPLIT_STRING\n> \n> NOTE: If any of the errors are false positives, please report\n>       them to the maintainer, see CHECKPATCH in MAINTAINERS.\n\nNote: you may be able to correct trivial indentation errors using\nclang-format.  Example:\n\n$ clang-format -i tree.c\n$ git commit -am \"Ran clang-format\""
+          ],
+          "name": "LinuxKernelStyle"
+        }
+      ],
+      "hostname": "bb136-20.mines.edu",
+      "calc-slip-days": 1,
+      "local-timestamp": 1599701546,
+      "local-due-date": 1599631199,
+      "deliverable-specific-checks": [],
+      "carried-slip-days": 0
+    }
+  },
+  "author-info": {
+    "username": "masonbrainard",
+    "full-name": "Mason Brainard",
+    "cwid": "10740921"
+  }
+}
