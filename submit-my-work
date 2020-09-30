@@ -265,7 +265,9 @@ $ git commit -am \"Ran clang-format\""
 (struct deliverable (name git-tag presubmit-checks due-date))
 
 (define project-deliverables
-  (vector (deliverable "Final Submission" "project-submission" '() 1599631199)))
+  (vector (deliverable "Final Submission" "project-submission" '() 1599631199)
+          (deliverable "Optional Project Resubmission" "project-resubmission"
+                       '() 1602568799)))
 
 (define (prompt-deliverable deliverables)
   (define current-tags
