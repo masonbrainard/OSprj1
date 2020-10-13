@@ -1,7 +1,12 @@
 {
   "deliverables": {
     "project-submission": {
+      "carried-slip-days": 0,
+      "calc-slip-days": 1,
+      "local-timestamp": 1599701546,
       "resubmission-detected": false,
+      "local-due-date": 1599631199,
+      "deliverable-specific-checks": [],
       "slip-days-spent": 1,
       "base-checks": [
         {
@@ -35,12 +40,47 @@
           "name": "LinuxKernelStyle"
         }
       ],
-      "hostname": "bb136-20.mines.edu",
-      "calc-slip-days": 1,
-      "local-timestamp": 1599701546,
-      "local-due-date": 1599631199,
+      "hostname": "bb136-20.mines.edu"
+    },
+    "project-resubmission": {
+      "resubmission-detected": false,
+      "slip-days-spent": 0,
+      "base-checks": [
+        {
+          "warnings": [],
+          "name": "InGitRepo"
+        },
+        {
+          "warnings": [],
+          "name": "RunningOnAlamode"
+        },
+        {
+          "warnings": [
+            "You have untracked files:\n\nerror.txt\nerror2.txt\nnot_verbose.txt\nout.txt\ntest/test.c\ntree2.c\n\nThese files will not be included in your submission unless you commit them."
+          ],
+          "name": "UntrackedFiles"
+        },
+        {
+          "warnings": [],
+          "name": "UncommittedFiles"
+        },
+        {
+          "warnings": [],
+          "name": "CodeCompiles"
+        },
+        {
+          "warnings": [
+            "You have style errors.  Points may be deducted for poor style.\n\nSee the Linux Kernel Style Guide for reference, the required style\nguide for this course:\nhttps://www.kernel.org/doc/html/v5.8/process/coding-style.html\n\nCheckpatch output:\n> ERROR: do not use C99 // comments\n> #1: FILE: tree.c:1:\n> +//Mason Brainard\n> \n> ERROR: do not use C99 // comments\n> #2: FILE: tree.c:2:\n> +//9/9/20\n> \n> ERROR: do not use C99 // comments\n> #3: FILE: tree.c:3:\n> +//section a\n> \n> ERROR: do not use C99 // comments\n> #19: FILE: tree.c:19:\n> +\t\t//how many tabs to add\n> \n> WARNING: braces {} are not necessary for single statement blocks\n> #20: FILE: tree.c:20:\n> +\t\tfor (int i = 0; i < ftwbuf->level - 1; i = i + 1) {\n> +\t\t\tprintf(\"%c\", 9);\n> +\t\t}\n> \n> ERROR: do not use C99 // comments\n> #24: FILE: tree.c:24:\n> +\t\t//what file/directory/sym\n> \n> ERROR: do not use C99 // comments\n> #28: FILE: tree.c:28:\n> +\t\t\t//send to readlink function which will return the path\n> \n> ERROR: do not use C99 // comments\n> #30: FILE: tree.c:30:\n> +\t\t\t// ssize_t nbytes, bufsiz;\n> \n> WARNING: Missing a blank line after declarations\n> #38: FILE: tree.c:38:\n> +\t\t\tint len = readlink(fpath, buf, bufsiz);\n> +\t\t\tif (len == -1) {\n> \n> ERROR: do not use C99 // comments\n> #58: FILE: tree.c:58:\n> +\t//save cwd\n> \n> ERROR: do not use C99 // comments\n> #60: FILE: tree.c:60:\n> +\t//if argc < 2 try to cwd\n> \n> total: 9 errors, 2 warnings, 92 lines checked\n> \n> tree.c has style problems, please review.\n> \n> NOTE: Ignored message types: C99_COMMENT_TOLERANCE CONST_STRUCT EMBEDDED_FUNCTION_NAME FILE_PATH_CHANGES SPDX_LICENSE_TAG SPLIT_STRING\n> \n> NOTE: If any of the errors are false positives, please report\n>       them to the maintainer, see CHECKPATCH in MAINTAINERS.\n\nNote: you may be able to correct trivial indentation errors using\nclang-format.  Example:\n\n$ clang-format -i tree.c\n$ git commit -am \"Ran clang-format\""
+          ],
+          "name": "LinuxKernelStyle"
+        }
+      ],
+      "hostname": "bb136-21.mines.edu",
+      "calc-slip-days": 0,
+      "local-timestamp": 1602562578,
+      "local-due-date": 1602568799,
       "deliverable-specific-checks": [],
-      "carried-slip-days": 0
+      "carried-slip-days": 1
     }
   },
   "author-info": {
