@@ -12,7 +12,8 @@
 #include <stdint.h>
 #include <limits.h>
 
-static int display_info(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)
+static int display_info(const char *fpath, const struct stat *sb, int tflag,
+			struct FTW *ftwbuf)
 {
 	if (ftwbuf->level > 0 || tflag == FTW_F) {
 		//how many tabs to add
@@ -35,7 +36,8 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
 
 			int len = readlink(fpath, buf, bufsiz);
 			if (len == -1) {
-				fprintf(stderr, "Error reading link: %s\n", fpath);
+				fprintf(stderr, "Error reading link: %s\n",
+					fpath);
 				return 1;
 			}
 
@@ -49,29 +51,27 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag, str
 	return 0;
 }
 
-
-
 int main(int argc, char *argv[])
 {
 	int flags = 0;
 	char cwd[1024];
 	//save cwd
 
-	//if argc < 2 try to cwd	
-	if(argc == 2)
-	{
-		if(getcwd(cwd, sizeof(cwd)) == NULL)
-		{
-			fprintf(stderr, "Couldn't print working directory? Sorry???\n");
+	//if argc < 2 try to cwd
+	if (argc == 2) {
+		if (getcwd(cwd, sizeof(cwd)) == NULL) {
+			fprintf(stderr,
+				"Couldn't print working directory? Sorry???\n");
 			return 1;
 		}
-		if(chdir(argv[1]) == -1)
-		{
-			fprintf(stderr, "Couldn't change to specified directory: %s\n", argv[1]);
+		if (chdir(argv[1]) == -1) {
+			fprintf(stderr,
+				"Couldn't change to specified directory: %s\n",
+				argv[1]);
 			return 1;
 		}
 	}
-	
+
 	chdir(argv[1]);
 	flags |= FTW_PHYS;
 
@@ -80,11 +80,11 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	if(argc == 2)
-	{
-		if(chdir(cwd) == -1)
-		{
-			fprintf(stderr, "Couldn't change to specified directory: %s\n", argv[1]);
+	if (argc == 2) {
+		if (chdir(cwd) == -1) {
+			fprintf(stderr,
+				"Couldn't change to specified directory: %s\n",
+				argv[1]);
 			return 1;
 		}
 	}
