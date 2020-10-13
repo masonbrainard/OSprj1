@@ -515,4 +515,5 @@ def main(argv):
 
 
 if __name__ == '__main__':
+    import pdb; pdb.set_trace()
     sys.exit(main(sys.argv[1:]))

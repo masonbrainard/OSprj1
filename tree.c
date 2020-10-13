@@ -12,8 +12,7 @@
 #include <stdint.h>
 #include <limits.h>
 
-static int display_info(const char *fpath, const struct stat *sb, int tflag,
-			struct FTW *ftwbuf)
+static int display_info(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)
 {
 	if (ftwbuf->level > 0 || tflag == FTW_F) {
 		//how many tabs to add
@@ -27,18 +26,20 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag,
 		} else if (tflag == FTW_SL) {
 			//send to readlink function which will return the path
 			char *buf;
-			ssize_t nbytes, bufsiz;
+			// ssize_t nbytes, bufsiz;
+			ssize_t bufsiz;
 
 			bufsiz = 4096;
 
 			buf = malloc(bufsiz);
 
-			nbytes = readlink(fpath, buf, bufsiz);
-			if (nbytes == -1) {
-				perror("readlink");
-				exit(-1);
+			int len = readlink(fpath, buf, bufsiz);
+			if (len == -1) {
+				fprintf(stderr, "Error reading link: %s\n", fpath);
+				return 1;
 			}
 
+			buf[len] = '\0';
 			printf("SYM %s -> %s", fpath + ftwbuf->base, buf);
 
 			free(buf);
@@ -48,27 +49,44 @@ static int display_info(const char *fpath, const struct stat *sb, int tflag,
 	return 0;
 }
 
+
+
 int main(int argc, char *argv[])
 {
-    //check if input is a directory
-    if (argc == 2)
-    {
-        DIR *dir;
-        if ((dir = opendir(argv[1])) == NULL)
-        {
-            fprintf(stderr, "Error opening directory: %s are you sure it's a directory?\n", argv[1]);
-            exit(1);
-        }
-        closedir(dir);
-    }
-
 	int flags = 0;
+	char cwd[1024];
+	//save cwd
 
+	//if argc < 2 try to cwd	
+	if(argc == 2)
+	{
+		if(getcwd(cwd, sizeof(cwd)) == NULL)
+		{
+			fprintf(stderr, "Couldn't print working directory? Sorry???\n");
+			return 1;
+		}
+		if(chdir(argv[1]) == -1)
+		{
+			fprintf(stderr, "Couldn't change to specified directory: %s\n", argv[1]);
+			return 1;
+		}
+	}
+	
+	chdir(argv[1]);
 	flags |= FTW_PHYS;
 
-	if (nftw((argc < 2) ? "." : argv[1], display_info, 20, flags) == -1) {
-		exit(-1);
+	if (nftw(".", display_info, 20, flags) == -1) {
+		fprintf(stderr, "NFTW Failed.\n");
+		return 1;
 	}
 
+	if(argc == 2)
+	{
+		if(chdir(cwd) == -1)
+		{
+			fprintf(stderr, "Couldn't change to specified directory: %s\n", argv[1]);
+			return 1;
+		}
+	}
 	exit(0);
 }

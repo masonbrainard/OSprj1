@@ -31,3 +31,4 @@ __pycache__
 assets/
 *.css
 *.html
+tree.c
